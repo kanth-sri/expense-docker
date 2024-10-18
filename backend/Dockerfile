@@ -1,5 +1,5 @@
 FROM node:20
-RUN useradd expense \
-    mkdir /app
+RUN useradd expense 
+RUN mkdir /app
 WORKDIR /app
 
