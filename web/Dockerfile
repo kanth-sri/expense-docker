@@ -2,5 +2,6 @@ FROM nginx
 EXPOSE 80
 RUN rm -rf /usr/share/nginx/html/*
 COPY code /usr/share/nginx/html/
-COPY expense.conf /etc/nginx/default.d/expense.conf
-#CMD [ "nginx", "-g", "daemon off;" ]
+RUN rm -rf /etc/nginx/nginx.conf
+RUN rm -rf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
