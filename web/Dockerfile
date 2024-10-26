@@ -1,8 +1,7 @@
 FROM nginx:mainline-alpine3.20-slim
-EXPOSE 80
-RUN rm -rf /usr/share/nginx/html/* && \
+
+RUN rm -rf /etc/nginx/nginx.conf && \
     rm -rf /etc/nginx/conf.d/default.conf && \
-    rm -rf /etc/nginx/nginx.conf && \
     mkdir -p /var/cache/nginx/client_temp && \
     mkdir -p /var/cache/nginx/proxy_temp && \
     mkdir -p /var/cache/nginx/fastcgi_temp && \
@@ -14,14 +13,7 @@ RUN rm -rf /usr/share/nginx/html/* && \
     chown -R nginx:nginx /var/log/nginx && \
     touch /var/run/nginx.pid && \
     chown -R nginx:nginx /var/run/nginx.pid /run/nginx.pid
-COPY code /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY code /usr/share/nginx/html
 USER nginx
-
-# FROM nginx
-# EXPOSE 80
-# RUN rm -rf /usr/share/nginx/html/*
-# COPY code /usr/share/nginx/html/
-# RUN rm -rf /etc/nginx/nginx.conf
-# RUN rm -rf /etc/nginx/conf.d/default.conf
-# COPY nginx.conf /etc/nginx/nginx.conf
+#COPY expense.conf /etc/nginx/conf.d/expense.conf
